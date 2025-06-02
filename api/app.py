@@ -1,12 +1,15 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, send_from_directory
+import os
 
 app = Flask(__name__)
 
 @app.route('/')
 def home():
-    # You can send any data if needed, like name or messages
-    return render_template('index.html', name="Rati")
+    return render_template('index.html')
 
-if __name__ == "__main__":
+@app.route('/static/<path:filename>')
+def static_files(filename):
+    return send_from_directory('static', filename)
+
+if __name__ == '__main__':
     app.run(debug=True)
-
