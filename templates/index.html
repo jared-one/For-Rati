@@ -1,1 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Birthday Rati! 🎉</title>
+  <link href="{{ url_for('static', filename='style.js') }}" rel="stylesheet" />
+  <style>
+    /* Reset */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background: #000000; /* darkest black */
+      color: #3BA4FF; /* bright blue */
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+      overflow-x: hidden;
+    }
+    h1 {
+      font-size: 3.5rem;
+      color: #1E90FF; /* slightly lighter blue */
+      text-shadow: 0 0 8px #3BA4FF;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    p {
+      max-width: 650px;
+      font-size: 1.25rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      color: #a0c4ff;
+      text-align: center;
+      font-weight: 400;
+    }
+    .gallery {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      padding-bottom: 1rem;
+      margin-bottom: 2rem;
+      scroll-behavior: smooth;
+    }
+    .gallery img {
+      height: 180px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px #3BA4FF;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .gallery img:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 18px #1E90FF;
+    }
+    video {
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 0 15px #3BA4FF;
+      margin-bottom: 3rem;
+      outline: none;
+    }
+    footer {
+      color: #444;
+      font-size: 0.9rem;
+      margin-top: auto;
+      text-align: center;
+      padding: 1rem 0;
+      font-style: italic;
+    }
+    /* Scrollbar for gallery */
+    .gallery::-webkit-scrollbar {
+      height: 8px;
+    }
+    .gallery::-webkit-scrollbar-track {
+      background: #111;
+      border-radius: 10px;
+    }
+    .gallery::-webkit-scrollbar-thumb {
+      background: #3BA4FF;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
 
+  <h1>Happy 19th Birthday, Rati! 🎂</h1>
+
+  <p>
+    To my dearest cousin and sister-in-heart,<br>
+    You are the calm in every storm, the light in our darkest nights, and the warmth in every cold moment.<br>
+    Your strength, kindness, and endless love inspire me every day. I am beyond grateful for you — my closest friend, my rock, and my biggest role model.<br>
+    This special day is for you. May your 19th year be filled with adventures, dreams realized, and happiness as boundless as your heart.
+  </p>
+
+  <div class="gallery">
+    <!-- Baby Rati photos -->
+    {% for i in range(2, 15) %}
+      <img src="{{ url_for('static', filename='rati media folder/Baby Rati photos/Baby Rati ' ~ i ~ '.jpg') }}" alt="Baby Rati photo {{ i }}" />
+    {% endfor %}
+  </div>
+
+  <p>
+    Every picture here tells a story of who you are — beautiful, strong, and endlessly inspiring.<br>
+    Let's cherish those memories while dreaming of the incredible future ahead.
+  </p>
+
+  <video controls muted>
+    <source src="{{ url_for('static', filename='rati media folder/Video/Rati Video.mp4') }}" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <footer>
+    Made with 💙 and deep appreciation by your loving cousin.
+  </footer>
+
+</body>
+</html>
