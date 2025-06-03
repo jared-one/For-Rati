@@ -3,626 +3,222 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy 19th Birthday, Rati! 💙</title>
+    <title>Happy 19th Birthday, Rati!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* Custom scrollbar (optional, for aesthetics) */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a; /* Darker track */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #007bff; /* Blue thumb */
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0056b3; /* Darker blue on hover */
         }
 
         body {
-            font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, #000000 0%, #1a1a2e 50%, #16213e 100%);
-            color: #ffffff;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
+            font-family: 'Inter', sans-serif; /* Using Inter font as suggested by Tailwind's default */
+            background-color: #000000; /* DARKEST black */
+            color: #e0e0e0; /* Light gray for text */
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
-
-        /* Animated background particles */
-        .background-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
+        /* Animation for sections appearing on scroll */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
-
-        .particle {
-            position: absolute;
-            background: linear-gradient(45deg, #4fc3f7, #29b6f6);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.7; }
-            50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
-        }
-
-        /* Header section */
-        .hero-section {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            position: relative;
-        }
-
-        .hero-title {
-            font-size: 4rem;
-            font-weight: bold;
-            background: linear-gradient(45deg, #64b5f6, #1976d2, #0d47a1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes glow {
-            from { filter: drop-shadow(0 0 5px #64b5f6); }
-            to { filter: drop-shadow(0 0 20px #1976d2); }
-        }
-
-        .hero-subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            color: #e3f2fd;
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 30px;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
-        }
-
-        /* Navigation */
-        .nav-menu {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-        }
-
-        .nav-button {
-            background: rgba(25, 118, 210, 0.8);
-            border: none;
-            color: white;
-            padding: 12px 24px;
-            margin: 5px;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .nav-button:hover {
-            background: rgba(25, 118, 210, 1);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(25, 118, 210, 0.4);
-        }
-
-        /* Content sections */
-        .section {
-            min-height: 100vh;
-            padding: 4rem 2rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .section-title {
-            font-size: 3rem;
-            margin-bottom: 2rem;
-            text-align: center;
-            background: linear-gradient(45deg, #42a5f5, #1e88e5);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .message-card {
-            max-width: 800px;
-            background: rgba(0, 0, 0, 0.7);
-            border: 2px solid #1976d2;
-            border-radius: 20px;
-            padding: 3rem;
-            margin: 2rem 0;
-            backdrop-filter: blur(15px);
-            box-shadow: 0 8px 32px rgba(25, 118, 210, 0.3);
-            animation: slideIn 1s ease-out;
-        }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .message-text {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            text-align: center;
-            color: #e3f2fd;
-        }
-
-        /* Photo gallery */
-        .photo-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            width: 100%;
-            max-width: 1200px;
-            margin: 2rem 0;
-        }
-
-        .photo-item {
-            position: relative;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .photo-item:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 15px 40px rgba(25, 118, 210, 0.4);
-        }
-
-        .photo-item img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            transition: all 0.3s ease;
-        }
-
-        .photo-item:hover img {
-            filter: brightness(1.1);
-        }
-
-        .photo-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-            color: white;
-            padding: 1.5rem;
-            transform: translateY(100%);
-            transition: all 0.3s ease;
-        }
-
-        .photo-item:hover .photo-overlay {
+        .scroll-animate.visible {
+            opacity: 1;
             transform: translateY(0);
         }
-
-        /* Video section */
-        .video-container {
+        .slider-container {
             position: relative;
-            max-width: 800px;
-            margin: 2rem 0;
-            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 15px 50px rgba(25, 118, 210, 0.3);
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 10px 15px -3px rgba(0, 123, 255, 0.2), 0 4px 6px -2px rgba(0, 123, 255, 0.1);
         }
-
-        .video-container video {
+        .slider-image {
             width: 100%;
-            border-radius: 20px;
+            height: 400px; /* Adjust as needed, or use aspect ratio */
+            object-fit: cover;
+            display: none; /* Hidden by default */
+            border-radius: 0.75rem;
         }
-
-        /* Music player */
-        .music-player {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background: rgba(0, 0, 0, 0.8);
-            border: 2px solid #1976d2;
-            border-radius: 15px;
-            padding: 15px;
-            backdrop-filter: blur(10px);
-            z-index: 1000;
+        .slider-image.active {
+            display: block; /* Show active image */
         }
-
-        .music-controls {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .play-button {
-            background: linear-gradient(45deg, #1976d2, #42a5f5);
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.6);
+            color: #007bff; /* Blue */
             border: none;
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+            padding: 10px 15px;
             cursor: pointer;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            z-index: 10;
+            transition: background-color 0.3s ease;
+        }
+        .slider-btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #0056b3; /* Darker blue */
+        }
+        .slider-btn.prev {
+            left: 15px;
+        }
+        .slider-btn.next {
+            right: 15px;
+        }
+        .section-title {
+            font-size: 2.5rem; /* Larger section titles */
+            font-weight: 700;
+            color: #007bff; /* Blue title */
+            margin-bottom: 1.5rem; /* More space below title */
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        .content-box {
+            background-color: rgba(26, 32, 44, 0.6); /* Slightly transparent dark bg */
+            backdrop-filter: blur(5px); /* Frosted glass effect */
+            padding: 2rem;
+            border-radius: 0.75rem; /* rounded-xl */
+            border: 1px solid #007bff; /* Blue border */
+            box-shadow: 0 0 20px rgba(0, 123, 255, 0.3);
+        }
+        .audio-player-custom {
+            background-color: rgba(26, 32, 44, 0.7);
+            backdrop-filter: blur(5px);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid #007bff;
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-direction: column;
         }
-
-        .volume-control {
-            width: 80px;
-        }
-
-        /* Special effects */
-        .floating-hearts {
-            position: fixed;
-            top: 0;
-            left: 0;
+        .audio-player-custom audio {
             width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1000;
+            max-width: 500px;
+            margin-top: 0.5rem;
         }
-
-        .heart {
-            position: absolute;
-            color: #42a5f5;
-            font-size: 20px;
-            animation: floatUp 4s linear infinite;
+        .audio-player-custom audio::-webkit-media-controls-panel {
+            background-color: #007bff; /* Blue controls panel */
         }
-
-        @keyframes floatUp {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .hero-title { font-size: 2.5rem; }
-            .section-title { font-size: 2rem; }
-            .message-card { padding: 2rem; margin: 1rem; }
-            .photo-gallery { grid-template-columns: 1fr; }
-            .nav-menu { position: relative; top: auto; right: auto; margin-bottom: 2rem; }
+        .audio-player-custom audio::-webkit-media-controls-play-button,
+        .audio-player-custom audio::-webkit-media-controls-volume-slider {
+            background-color: #ffffff; /* White for better contrast on blue */
+            border-radius: 50%;
         }
     </style>
 </head>
-<body>
-    <div class="background-animation" id="backgroundAnimation"></div>
-    <div class="floating-hearts" id="floatingHearts"></div>
+<body class="bg-black text-gray-200 selection:bg-blue-500 selection:text-white">
 
-    <!-- Navigation -->
-    <div class="nav-menu">
-        <button class="nav-button" onclick="scrollToSection('hero')">Home</button>
-        <button class="nav-button" onclick="scrollToSection('message')">Message</button>
-        <button class="nav-button" onclick="scrollToSection('memories')">Memories</button>
-        <button class="nav-button" onclick="scrollToSection('celebration')">Celebrate</button>
-    </div>
+    <header class="min-h-screen flex flex-col items-center justify-center text-center p-6 scroll-animate">
+        <h1 class="text-5xl md:text-7xl font-bold mb-4">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-blue-600">Happy 19th Birthday</span>
+        </h1>
+        <h2 class="text-6xl md:text-8xl font-extrabold mb-8 text-white">Rati!</h2>
+        <p class="text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto">
+            To an amazing person, a cherished friend, and the sister I've always looked up to. This is a little something to celebrate you.
+        </p>
+        <div class="mt-12">
+            <i class="fas fa-chevron-down text-sky-400 text-4xl animate-bounce"></i>
+        </div>
+    </header>
 
-    <!-- Hero Section -->
-    <section id="hero" class="hero-section">
-        <h1 class="hero-title">Happy 19th Birthday, Rati!</h1>
-        <p class="hero-subtitle">Today we celebrate the amazing person you are 💙</p>
-        <div class="scroll-indicator">
-            <span style="font-size: 2rem;">↓</span>
+    <section id="baby-photos" class="py-16 md:py-24 px-6 scroll-animate">
+        <div class="container mx-auto max-w-4xl">
+            <h2 class="section-title">Our Journey Begins</h2>
+            <div class="content-box">
+                <p class="text-lg mb-8 text-center text-gray-300">Remember these? From the earliest smiles to the first steps, these moments are treasures. It's amazing to see how far we've come!</p>
+                <div id="babyRatiSlider" class="slider-container">
+                    <button class="slider-btn prev"><i class="fas fa-chevron-left"></i></button>
+                    <button class="slider-btn next"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <p class="text-md mt-6 text-center text-gray-400 italic">
+                    [Personalize this: Add a specific memory related to her childhood or a shared funny moment from when you were younger.]
+                </p>
+            </div>
         </div>
     </section>
 
-    <!-- Personal Message Section -->
-    <section id="message" class="section">
-        <h2 class="section-title">From My Heart to Yours</h2>
-        <div class="message-card">
-            <p class="message-text">
-                Rati, where do I even begin? You're not just my cousin – you're the sister I never had, the friend who's always been there, and the person I look up to more than you know. 
-            </p>
-        </div>
-        <div class="message-card">
-            <p class="message-text">
-                Your kindness lights up every room you enter. The way you care for everyone around you, how you listen without judgment, and how you always know the right thing to say – it's pure magic. You have this incredible ability to make people feel seen and valued, and that's a gift not many people possess.
-            </p>
-        </div>
-        <div class="message-card">
-            <p class="message-text">
-                Watching you grow into the incredible person you are today has been one of my greatest joys. Your dreams, your laughter, your determination – everything about you inspires me to be better. Thank you for being my anchor, my cheerleader, and my partner in all of life's adventures.
-            </p>
+    <section id="role-model-photos" class="py-16 md:py-24 bg-gray-900/50 px-6 scroll-animate">
+        <div class="container mx-auto max-w-4xl">
+            <h2 class="section-title">My Amazing Sister</h2>
+            <div class="content-box">
+                <p class="text-lg mb-8 text-center text-gray-300">You've always been more than a cousin. You're a role model, a guiding star, and the sister I can always count on. Your strength and kindness inspire me every day.</p>
+                <div id="roleModelRatiSlider" class="slider-container">
+                    <button class="slider-btn prev"><i class="fas fa-chevron-left"></i></button>
+                    <button class="slider-btn next"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                 <p class="text-md mt-6 text-center text-gray-400 italic">
+                    [Personalize this: Mention a specific quality you admire in her, or a time she supported you or others.]
+                </p>
+            </div>
         </div>
     </section>
 
-    <!-- Memories Section -->
-    <section id="memories" class="section">
-        <h2 class="section-title">Our Beautiful Memories</h2>
-        
-        <!-- Baby Photos -->
-        <h3 style="color: #42a5f5; font-size: 2rem; margin: 2rem 0;">The Sweetest Beginning</h3>
-        <div class="photo-gallery">
-            <div class="photo-item">
-                <img src="/static/rati%20media%20folder/Baby%20Rati%20photos/Baby%20Rati.jpg" alt="Baby Rati" loading="lazy">
-                <div class="photo-overlay">
-                    <p>Even as a baby, you had that special spark ✨</p>
-                </div>
-            </div>
-            <div class="photo-item">
-                <img src="/static/rati%20media%20folder/Baby%20Rati%20photos/Baby%20Rati%202.jpg" alt="Baby Rati 2" loading="lazy">
-                <div class="photo-overlay">
-                    <p>Those adorable baby cheeks! 👶</p>
-                </div>
-            </div>
-            <div class="photo-item">
-                <img src="/static/rati%20media%20folder/Baby%20Rati%20photos/Baby%20Rati%203.jpg" alt="Baby Rati 3" loading="lazy">
-                <div class="photo-overlay">
-                    <p>Pure joy in every smile 😊</p>
-                </div>
-            </div>
-            <div class="photo-item">
-                <img src="/static/rati%20media%20folder/Baby%20Rati%20photos/Baby%20Rati%204.jpg" alt="Baby Rati 4" loading="lazy">
-                <div class="photo-overlay">
-                    <p>Already showing your beautiful personality 💕</p>
-                </div>
-            </div>
-            <div class="photo-item">
-                <img src="/static/rati%20media%20folder/Baby%20Rati%20photos/Baby%20Rati%205.jpg" alt="Baby Rati 5" loading="lazy">
-                <div class="photo-overlay">
-                    <p>Spreading joy wherever you go 🌈</p>
-                </div>
-            </div>
-            <div class="photo-item">
-                <img src="/static/rati%20media%20folder/Baby%20Rati%20photos/Baby%20Rati%206.jpg" alt="Baby Rati 6" loading="lazy">
-                <div class="photo-overlay">
-                    <p>Your bright spirit shining through 🌟</p>
-                </div>
-            </div>
-            <div class="photo-item">
-                <img src="/static/rati%20media%20folder/Baby%20Rati%20photos/Baby%20Rati%207.jpg" alt="Baby Rati 7" loading="lazy">
-                <div class="photo-overlay">
-                    <p>Sweet memories of early days 💙</p>
-                </div>
-            </div>
-            <div class="photo-item">
-                <img src="/static/rati%20media%20folder/Baby%20Rati%20photos/Baby%20Rati%208.jpg" alt="Baby Rati 8" loading="lazy">
-                <div class="photo-overlay">
-                    <p>Every moment was precious 💖</p>
-                </div>
-            </div>
-            <div class="photo-item">
-                <img src="/static/rati%20media%20folder/Baby%20Rati%20photos/Baby%20Rati%209.jpg" alt="Baby Rati 9" loading="lazy">
-                <div class="photo-overlay">
-                    <p>Growing more beautiful each day 🌸</p>
-                </div>
-            </div>
-            <div class="photo-item">
-                <img src="/static/rati%20media%20folder/Baby%20Rati%20photos/Baby%20Rati%2010.jpg" alt="Baby Rati 10" loading="lazy">
-                <div class="photo-overlay">
-                    <p>Your playful nature shining 🎈</p>
-                </div>
-            </div>
-            <div class="photo-item">
-                <img src="/static/rati%20media%20folder/Baby%20Rati%20photos/Baby%20Rati%2011.jpg" alt="Baby Rati 11" loading="lazy">
-                <div class="photo-overlay">
-                    <p>Adventures waiting to unfold 🚀</p>
-                </div>
-            </div>
-            <div class="photo-item">
-                <img src="/static/rati%20media%20folder/Baby%20Rati%20photos/Baby%20Rati%2012.jpg" alt="Baby Rati 12" loading="lazy">
-                <div class="photo-overlay">
-                    <p>Pure happiness captured 📸</p>
-                </div>
-            </div>
-            <div class="photo-item">
-                <img src="/static/rati%20media%20folder/Baby%20Rati%20photos/Baby%20Rati%2013.jpg" alt="Baby Rati 13" loading="lazy">
-                <div class="photo-overlay">
-                    <p>Curiosity and wonder 🔍</p>
-                </div>
-            </div>
-            <div class="photo-item">
-                <img src="/static/rati%20media%20folder/Baby%20Rati%20photos/Baby%20Rati%2014.jpg" alt="Baby Rati 14" loading="lazy">
-                <div class="photo-overlay">
-                    <p>The foundation of who you'd become 🏰</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Role Model Photos -->
-        <h3 style="color: #42a5f5; font-size: 2rem; margin: 3rem 0 2rem 0;">The Sister & Role Model</h3>
-        <div class="photo-gallery">
-            <div class="photo-item">
-                <img src="/static/rati%20media%20folder/Role%20model%20Rati/Rati%20as%20a%20role%20model%20and%20sister%20to%20all.jpg" alt="Rati Role Model" loading="lazy">
-                <div class="photo-overlay">
-                    <p>Leading by example, always 🌟</p>
-                </div>
-            </div>
-            <div class="photo-item">
-                <img src="/static/rati%20media%20folder/Role%20model%20Rati/Rati%20as%20a%20role%20model%20and%20sister%20to%20all2.jpg" alt="Rati Role Model 2" loading="lazy">
-                <div class="photo-overlay">
-                    <p>The sister everyone wishes they had 💙</p>
-                </div>
-            </div>
-            <div class="photo-item">
-                <img src="/static/rati%20media%20folder/Role%20model%20Rati/Rati%20as%20a%20role%20model%20and%20sister%20to%20all3.jpg" alt="Rati Role Model 3" loading="lazy">
-                <div class="photo-overlay">
-                    <p>Your strength inspires us all 💪</p>
-                </div>
-            </div>
-            <div class="photo-item">
-                <img src="/static/rati%20media%20folder/Role%20model%20Rati/Rati%20as%20a%20role%20model%20and%20sister%20to%20all4.jpg" alt="Rati Role Model 4" loading="lazy">
-                <div class="photo-overlay">
-                    <p>Grace and wisdom in every step 👑</p>
-                </div>
-            </div>
-            <div class="photo-item">
-                <img src="/static/rati%20media%20folder/Role%20model%20Rati/Rati%20as%20a%20role%20model%20and%20sister%20to%20all5.jpg" alt="Rati Role Model 5" loading="lazy">
-                <div class="photo-overlay">
-                    <p>Inspiring others to be their best ✨</p>
+    <section id="video-message" class="py-16 md:py-24 px-6 scroll-animate">
+        <div class="container mx-auto max-w-3xl">
+            <h2 class="section-title">A Special Moment For You</h2>
+            <div class="content-box">
+                <p class="text-lg mb-6 text-center text-gray-300">Here's a little something we put together, filled with love and wishes just for you!</p>
+                <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden border-2 border-blue-500 shadow-2xl">
+                    <video controls class="w-full h-full" poster="{{ url_for('static', filename='rati media folder/Role model Rati/Rati as a role model and sister to all.jpg') }}"> <source src="{{ url_for('static', filename='rati media folder/Video/Rati Video.mp4') }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Celebration Section -->
-    <section id="celebration" class="section">
-        <h2 class="section-title">Special Moment</h2>
-        <div class="video-container">
-            <video controls poster="/static/rati%20media%20folder/Baby%20Rati%20photos/Baby%20Rati.jpg">
-                <source src="/static/rati%20media%20folder/Video/Rati%20Video.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-        <div class="message-card">
-            <p class="message-text">
-                As you step into 19, I want you to know that you're destined for incredible things. Your compassion, intelligence, and strength will take you places you've only dreamed of. Keep being the amazing person you are, keep chasing your dreams, and never forget how loved and appreciated you are.
-            </p>
-        </div>
-        <div class="message-card">
-            <p class="message-text">
-                Here's to another year of laughter, adventures, and memories we'll create together. Happy 19th Birthday, Rati! May this year bring you all the happiness, success, and love your beautiful heart deserves. 🎉💙
-            </p>
+    <section id="heartfelt-message" class="py-16 md:py-24 bg-gray-900/50 px-6 scroll-animate">
+        <div class="container mx-auto max-w-3xl">
+            <h2 class="section-title">From My Heart to Yours</h2>
+            <div class="content-box">
+                <p class="text-lg md:text-xl leading-relaxed text-gray-300">
+                    Rati, on your 19th birthday, words can hardly express how much you mean to me. You're not just my cousin; you're the sister I always wished for, my confidante, my rock, and one of my biggest inspirations.
+                    <br><br>
+                    <strong>[IMPORTANT: Please replace this paragraph and the next with your own genuine, heartfelt words. Think about specific memories, qualities you admire, inside jokes, or what her presence in your life means to you. The more personal, the better!]</strong>
+                    <br><br>
+                    Watching you grow into the incredible, compassionate, and driven young woman you are today has been one of the greatest joys of my life. I admire your [mention a specific quality, e.g., resilience, humor, intelligence, kindness] and the way you [mention a specific action or trait, e.g., always know how to make people laugh, pursue your dreams fearlessly, care for others].
+                    <br><br>
+                    Thank you for being you. Thank you for the laughter, the support, the late-night talks, and for simply being a constant source of light in my life. I am so incredibly proud of everything you are and everything you're yet to become.
+                    <br><br>
+                    Here's to you, Rati! May your 19th year be filled with immense joy, success, love, and all the wonderful adventures you deserve.
+                </p>
+            </div>
         </div>
     </section>
 
-    <!-- Music Player -->
-    <div class="music-player">
-        <div class="music-controls">
-            <button class="play-button" id="playButton" onclick="toggleMusic()">▶</button>
-            <span style="color: #42a5f5; font-size: 0.9rem;">Birthday Vibes</span>
-            <input type="range" class="volume-control" id="volumeControl" min="0" max="100" value="50">
+    <section id="music" class="py-16 md:py-24 px-6 scroll-animate">
+        <div class="container mx-auto max-w-2xl text-center">
+            <h2 class="section-title">A Moment of Reflection</h2>
+            <p class="text-lg mb-6 text-gray-300">Some soothing music for you to enjoy. Relax and know you're celebrated!</p>
+            <div class="audio-player-custom">
+                 <p class="text-gray-400 text-sm mb-2">Playing: Kevin Zadai Soaking Music Vol 1 - Awakening Movement One: Twilight</p>
+                <audio controls>
+                    <source src="{{ url_for('static', filename='Kevin Zadai Soaking Music Volume 1 Awakening. Movement One_ Twilight.mp3') }}" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
         </div>
-        <audio id="backgroundMusic" loop>
-            <source src="/static/Kevin%20Zadai%20Soaking%20Music%20Volume%201%20Awakening.%20Movement%20One_%20Twilight.mp3" type="audio/mpeg">
-        </audio>
-    </div>
+    </section>
 
-    <script>
-        // Background animation
-        function createParticles() {
-            const container = document.getElementById('backgroundAnimation');
-            for (let i = 0; i < 20; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.width = Math.random() * 10 + 5 + 'px';
-                particle.style.height = particle.style.width;
-                particle.style.animationDelay = Math.random() * 6 + 's';
-                particle.style.animationDuration = Math.random() * 4 + 4 + 's';
-                container.appendChild(particle);
-            }
-        }
+    <footer class="py-12 text-center bg-gray-900/70 border-t border-blue-700 scroll-animate">
+        <p class="text-gray-400">Created with <i class="fas fa-heart text-red-500"></i> for Rati on her 19th Birthday.</p>
+        <p class="text-sm text-gray-500 mt-2">May all your dreams take flight!</p>
+    </footer>
 
-        // Floating hearts
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.className = 'heart';
-            heart.innerHTML = '💙';
-            heart.style.left = Math.random() * 100 + '%';
-            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
-            document.getElementById('floatingHearts').appendChild(heart);
-            
-            setTimeout(() => {
-                heart.remove();
-            }, 5000);
-        }
-
-        // Music player
-        let isPlaying = false;
-        const audio = document.getElementById('backgroundMusic');
-        const playButton = document.getElementById('playButton');
-        const volumeControl = document.getElementById('volumeControl');
-
-        function toggleMusic() {
-            if (isPlaying) {
-                audio.pause();
-                playButton.innerHTML = '▶';
-            } else {
-                audio.play();
-                playButton.innerHTML = '⏸';
-            }
-            isPlaying = !isPlaying;
-        }
-
-        volumeControl.addEventListener('input', function() {
-            audio.volume = this.value / 100;
-        });
-
-        // Smooth scrolling
-        function scrollToSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            section.scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animation = 'slideIn 1s ease-out';
-                }
-            });
-        }, observerOptions);
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            createParticles();
-            setInterval(createHeart, 2000);
-            
-            // Observe all message cards
-            document.querySelectorAll('.message-card').forEach(card => {
-                observer.observe(card);
-            });
-
-            // Set initial audio volume
-            audio.volume = 0.5;
-        });
-
-        // Photo gallery lightbox effect
-        document.querySelectorAll('.photo-item').forEach(item => {
-            item.addEventListener('click', function() {
-                const img = this.querySelector('img');
-                const lightbox = document.createElement('div');
-                lightbox.style.cssText = `
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background: rgba(0,0,0,0.9);
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    z-index: 10000;
-                    cursor: pointer;
-                `;
-                
-                const lightboxImg = document.createElement('img');
-                lightboxImg.src = img.src;
-                lightboxImg.style.cssText = `
-                    max-width: 90%;
-                    max-height: 90%;
-                    border-radius: 15px;
-                    box-shadow: 0 0 50px rgba(66, 165, 245, 0.5);
-                `;
-                
-                lightbox.appendChild(lightboxImg);
-                document.body.appendChild(lightbox);
-                
-                lightbox.addEventListener('click', function() {
-                    document.body.removeChild(lightbox);
-                });
-            });
-        });
-    </script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
